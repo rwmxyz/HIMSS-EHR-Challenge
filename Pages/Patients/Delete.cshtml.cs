@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HIMSS_EHR_Challenge.Data;
 using HIMSS_EHR_Challenge.Models;
 
-namespace HIMSS_EHR_Challenge.Pages_Patients
+namespace HIMSS_EHR_Challenge.Pages.Patients
 {
     public class DeleteModel : PageModel
     {
