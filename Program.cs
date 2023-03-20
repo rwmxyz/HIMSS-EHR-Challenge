@@ -1,12 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using HIMSS_EHR_Challenge.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<PatientContex>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("PatientContex") ?? throw new InvalidOperationException("Connection string 'PatientContex' not found.")));
 
 var app = builder.Build();
 
