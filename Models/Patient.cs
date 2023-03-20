@@ -17,8 +17,17 @@ public class Patient
 
     [DataType(DataType.Text)]
     public int SSN { get; set; }
-    [DataType(DataType.Custom)]
-    public Gender Gender { get; set; }
+
+    [Required]
+    public Genders Gender { get; set; }
+    public enum Genders { Male, Female};
+
+    [DataType(DataType.PhoneNumber)]
+    public int PhoneNumber { get; set; }
+
+    [DataType(DataType.EmailAddress)]
+    public string Email { get; set; }
+
+
 }
 
-public enum Gender { Male, Female }
