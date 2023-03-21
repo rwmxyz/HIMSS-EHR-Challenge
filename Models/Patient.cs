@@ -20,14 +20,11 @@ public class Patient
 
     [Required]
     public Genders Gender { get; set; }
-    public enum Genders { Male, Female};
+    public enum Genders { Male, Female, Other};
 
     [DataType(DataType.PhoneNumber)]
     public int PhoneNumber { get; set; }
 
     [DataType(DataType.EmailAddress)]
     public string Email { get; set; }
-
-
 }
-
