@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using HIMSS_EHR_Challenge.Models;
 using HIMSS_EHR_Challenge.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +11,14 @@ builder.Services.AddDbContext<PatientContex>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("PatientContex") ?? throw new InvalidOperationException("Connection string 'PatientContex' not found.")));
 
 var app = builder.Build();
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    SeedData.Initialize(services);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

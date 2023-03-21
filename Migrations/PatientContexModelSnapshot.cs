@@ -44,8 +44,9 @@ namespace HIMSS_EHR_Challenge.Migrations
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SSN")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SSN")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

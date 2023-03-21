@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HIMSS_EHR_Challenge.Migrations
 {
     [DbContext(typeof(PatientContex))]
-    [Migration("20230320164900_PhoneNumberUpdate")]
-    partial class PhoneNumberUpdate
+    [Migration("20230321160848_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,8 +47,9 @@ namespace HIMSS_EHR_Challenge.Migrations
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SSN")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SSN")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
