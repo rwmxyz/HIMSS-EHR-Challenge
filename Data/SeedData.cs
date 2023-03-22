@@ -4,16 +4,17 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using HIMSS_EHR_Challenge.Models;
 
-namespace HIMSS_EHR_Challenge.Models;
+namespace HIMSS_EHR_Challenge.Data;
 
 public static class SeedData
 {
     public static async void Initialize(IServiceProvider serviceProvider)
     {
-        using (var context = new PatientContex(
+        using (var context = new EhrContex(
             serviceProvider.GetRequiredService<
-            DbContextOptions<PatientContex>>()))
+            DbContextOptions<EhrContex>>()))
         {
             if (context == null || context.Patient == null)
             {
@@ -34,7 +35,8 @@ public static class SeedData
                     string apiResponse = await response.Content.ReadAsStringAsync();
 
                     var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-                    options.Converters.Add(new GendersConverter());
+                    options.Converters.Add(new GenderConverter());
+                    options.Converters.Add(new StatusConverter());
                     patientsList = JsonSerializer.Deserialize<List<Patient>>(apiResponse, options);
                 }
             }

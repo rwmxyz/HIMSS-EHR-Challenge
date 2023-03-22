@@ -13,9 +13,9 @@ namespace HIMSS_EHR_Challenge.Pages_Patients
 {
     public class EditModel : PageModel
     {
-        private readonly HIMSS_EHR_Challenge.Data.PatientContex _context;
+        private readonly HIMSS_EHR_Challenge.Data.EhrContex _context;
 
-        public EditModel(HIMSS_EHR_Challenge.Data.PatientContex context)
+        public EditModel(HIMSS_EHR_Challenge.Data.EhrContex context)
         {
             _context = context;
         }

@@ -7,6 +7,7 @@ namespace HIMSS_EHR_Challenge.Models;
 
 public class Patient
 {
+    [Key]
     public int Id { get; set; }
 
     [DataType(DataType.Text)]
@@ -30,9 +31,13 @@ public class Patient
 
     [DataType(DataType.EmailAddress)]
     public string Email { get; set; }
+
+    public PatientStatus Status { get; set; }
+
+    public enum PatientStatus { Seeded, Created};
 }
 
- public class GendersConverter : JsonConverter<Patient.Genders>
+public class GenderConverter : JsonConverter<Patient.Genders>
 {
     public override Patient.Genders Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
@@ -58,6 +63,37 @@ public class Patient
     }
 
     public override void Write(Utf8JsonWriter writer, Patient.Genders value, JsonSerializerOptions options)
+    {
+        writer.WriteStringValue(value.ToString());
+    }
+}
+
+public class StatusConverter : JsonConverter<Patient.PatientStatus>
+{
+    public override Patient.PatientStatus Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        if (reader.TokenType != JsonTokenType.String)
+        {
+            throw new JsonException();
+        }
+
+        string enumString = reader.GetString();
+
+        if (enumString.Equals("Seeded", StringComparison.OrdinalIgnoreCase))
+        {
+            return Patient.PatientStatus.Seeded;
+        }
+        else if (enumString.Equals("Created", StringComparison.OrdinalIgnoreCase))
+        {
+            return Patient.PatientStatus.Created;
+        }
+        else
+        {
+            throw new JsonException($"Invalid patient status value: {enumString}"); 
+        }
+    }
+
+    public override void Write(Utf8JsonWriter writer, Patient.PatientStatus value, JsonSerializerOptions options)
     {
         writer.WriteStringValue(value.ToString());
     }

@@ -22,7 +22,7 @@ namespace HIMSS_EHR_Challenge.Migrations
                     DateOfBirth = table.Column<DateTime>(type: "TEXT", nullable: false),
                     SSN = table.Column<string>(type: "TEXT", nullable: false),
                     Gender = table.Column<int>(type: "INTEGER", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    PhoneNumber = table.Column<long>(type: "INTEGER", nullable: false),
                     Email = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
